@@ -1,0 +1,1 @@
+AKS kluster h16 Standard_H16
