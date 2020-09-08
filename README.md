@@ -25,10 +25,10 @@ Tests Included:
 1. Sequential Reads in a debian POD AZURE Files Premium ```fio```
 1. Sequential Writes in debian POD AZURE Files Premium using ```fio```
 
-To execute same test multiple times update below section in [Tests](/automation/stats/stat-run.sh) file
-```bash
-for i in {1..1}
-```
+Results: 
+The results for each run can be found under Artifacts section of each run. [Here](https://github.com/krishnaji/AKS-stats-gathering/actions)
+
+Configs:
 
 To increase Azure Files Standard and Premium storage capacity update below section in [Azure-Files-PVC](/automation/stat/azure-file-pvc.yaml)
 ```yml
@@ -41,6 +41,14 @@ To increase OS Disk size on Nodes update below [node pool parameter](/automation
 ```bash
 --node-osdisk-size 128 
 ```
+
+Note: Updates to below section would need docker build/push and updates  to stat.yaml.
+
+To execute same test multiple times update below section in [Tests](/automation/stats/stat-run.sh) file
+```bash
+for i in {1..1}
+```
+
 Below are defults that run as part of the tests.
 Sysbech
 ```bash 
@@ -50,7 +58,7 @@ Fio
 ```bash
 fio --name=seqread --rw=read --direct=1 --ioengine=libaio --bs=8k --numjobs=8 --size=1G --runtime=600  --group_reporting
 ```
-To make size dynamic based on the avilable Node Memory update --size parameter as below. [eg](https://github.com/krishnaji/AKS-stats-gathering/blob/6ac2e3a28ea3c4806140ccba4b73bb754e56eb04/automation/stat/stat-run.sh#L35)
+To make --size dynamic based on the avilable Node Memory update --size parameter as below. [eg](https://github.com/krishnaji/AKS-stats-gathering/blob/6ac2e3a28ea3c4806140ccba4b73bb754e56eb04/automation/stat/stat-run.sh#L35) here the --size is twice the total memory on the node
 ```bash
 --size=$(($(grep MemTotal /proc/meminfo|awk '{print $2}') * 2))K
 ```

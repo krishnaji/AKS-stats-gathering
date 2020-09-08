@@ -33,7 +33,7 @@ echo "Pod state: $Pod_status...";
 done;
 
 for pod in $(kubectl get pod -n $3  -l job-name=statjob| grep statjob | awk '{print $1}') ; do
-kubectl logs -f $pod -n $3 | tee $pod.log;
+kubectl logs -f $pod -n $3 | tee $4-$pod.log;
 done
 
 cat  $pod.log| grep Finished_Tests
