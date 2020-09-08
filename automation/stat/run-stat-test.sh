@@ -36,11 +36,12 @@ for pod in $(kubectl get pod -n $3  -l job-name=statjob| grep statjob | awk '{pr
 kubectl logs -f $pod -n $3 | tee $4-$pod.log;
 done
 
-cat  $pod.log| grep Finished_Tests
+cat  $4-$pod.log| grep Finished_Tests
 if [ $? -eq 0 ]
 then
 kubectl delete -f . -n $3 && kubectl delete namespace $3 && az aks nodepool delete -g $1 --cluster-name $2 --name $3 --no-wait
 fi
+cat  $4-$pod.log||egrep "cat|CPU Run|threads:|Prime numbers limit:|events per second:|total time:|total number of events:|min:|avg:|max:|approx.  95 percentile:|Sequential Reads|READ:|Sequential Writes|WRITE:" > summary.log
 
 # Finally Delete AKS cluster
 # az aks delete  -g  $1 -n  $3 
