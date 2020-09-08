@@ -11,7 +11,7 @@ To run CPU and Storage Test update and commit [run-test-for](/automation/stat/ru
 
 eg. AKS kluster m128r Standard_M128
 
-Once changes to this file are committed , the Github Actions would start , which will create the nodedepool/namespace and will also execute the tests.
+Once changes to this file are committed , the Github Actions would start , which will create the nodedepool/namespace and will also execute the tests. It filnanly delete the nodepool/kubernetes resources created for the tests.
 
 Tests Included:
 
