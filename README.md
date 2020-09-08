@@ -41,3 +41,16 @@ To increase OS Disk size on Nodes update below [node pool parameter](/automation
 ```bash
 --node-osdisk-size 128 
 ```
+Below are defults that run as part of the tests.
+Sysbech
+```bash 
+sysbench  --test=cpu  --cpu-max-prime=20000 run
+```
+Fio
+```bash
+fio --name=seqread --rw=read --direct=1 --ioengine=libaio --bs=8k --numjobs=8 --size=1G --runtime=600  --group_reporting
+```
+To make size dynamic based on the avilable Node Memory update --size parameter as below. [eg](https://github.com/krishnaji/AKS-stats-gathering/blob/6ac2e3a28ea3c4806140ccba4b73bb754e56eb04/automation/stat/stat-run.sh#L35)
+```bash
+--size=$(($(grep MemTotal /proc/meminfo|awk '{print $2}') * 2))K
+```
