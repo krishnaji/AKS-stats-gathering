@@ -41,7 +41,7 @@ if [ $? -eq 0 ]
 then
 kubectl delete -f . -n $3 && kubectl delete namespace $3 && az aks nodepool delete -g $1 --cluster-name $2 --name $3 --no-wait
 fi
-cat  $4-$pod.log||egrep "cat|CPU Run|threads:|Prime numbers limit:|events per second:|total time:|total number of events:|min:|avg:|max:|approx.  95 percentile:|Sequential Reads|READ:|Sequential Writes|WRITE:" > summary.log
+cat  $4-$pod.log|egrep "cat|CPU Run|threads:|Prime numbers limit:|events per second:|total time:|total number of events:|min:|avg:|max:|approx.  95 percentile:|Sequential Reads|READ:|Sequential Writes|WRITE:" > summary.log
 
 # Finally Delete AKS cluster
 # az aks delete  -g  $1 -n  $3 
