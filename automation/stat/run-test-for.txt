@@ -1,1 +1,1 @@
-AKS kluster e16dv4 Standard_E16d_v4
+AKS kluster e20dv4 Standard_E20d_v4
