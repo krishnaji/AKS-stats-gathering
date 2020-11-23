@@ -1,1 +1,1 @@
-AKS kluster h16 Standard_H16
+AKS kluster E16d Standard_E16d_v4
