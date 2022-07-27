@@ -44,7 +44,7 @@ To increase OS Disk size on Nodes update below [node pool parameter](/automation
 
 Note: Updates to below section would need docker build/push and updates  to stat.yaml.
 
-To execute same test multiple times update below section in [Tests](/automation/stats/stat-run.sh) file
+To execute same test multiple times update below section in [Tests](/automation/stat/stat-run.sh) file
 ```bash
 for i in {1..1}
 ```
